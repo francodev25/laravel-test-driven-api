@@ -21,7 +21,6 @@ class TodoListTest extends TestCase
 
         // assertion / predict
 
-        $this->withoutExceptionHandling();
         
         $response = $this->getJson(route('todo-list.store'));
 
