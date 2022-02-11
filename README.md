@@ -1,3 +1,18 @@
+## Test API
+Create the .env (see .env.example)
+
+Create a Database on your client mysql (You can use .env.example to see the name DB).
+
+Then run the command below
+
+```php artisan test```
+
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
