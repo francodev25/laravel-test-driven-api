@@ -25,13 +25,26 @@ class TodoListTest extends TestCase
         // action / performe
 
         // assertion / predict
-        TodoList::create(['name' => 'my list']);
         
+        /* Don't create data like this, otherwise you should
+        * set each every field when you create in this file.
+        * So it is not recommended.
+        * TodoList::create(['name' => 'my list']);
+        * Use TodoList::factory()->create() instead
+        */
+        $list = TodoList::factory()->create();
+
+
+
         $response = $this->getJson(route('todo-list.store'));
 
         // $response = $this->get('/');
         // dd($response->json());
         
         $this->assertEquals(1,count($response->json()));
+
+        //The first One todo List is the created
+        $this->assertEquals($list->name,$response->json()[0]['name']);
+
     }
 }
