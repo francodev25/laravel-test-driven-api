@@ -32,19 +32,25 @@ class TodoListTest extends TestCase
         * TodoList::create(['name' => 'my list']);
         * Use TodoList::factory()->create() instead
         */
-        $list = TodoList::factory()->create();
+        
+        # Create fake data at DB : 2 ToDos
+        $todo1FakeDB = TodoList::factory()->create();
+        TodoList::factory()->create();
 
 
-
+        #Get Response
         $response = $this->getJson(route('todo-list.store'));
 
-        // $response = $this->get('/');
-        // dd($response->json());
-        
-        $this->assertEquals(1,count($response->json()));
 
-        //The first One todo List is the created
-        $this->assertEquals($list->name,$response->json()[0]['name']);
+        [$todo1Response] = $response?->json();
+
+        // dd($todo1Response);
+        
+        //Expect two ToDos
+        $this->assertEquals(2,count($response?->json()));
+
+        //The first One todo List res is Equal to first at DB
+        $this->assertEquals($todo1FakeDB['name'],$todo1Response['name']);
 
     }
 }
