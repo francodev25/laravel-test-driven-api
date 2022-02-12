@@ -18,7 +18,7 @@ class TodoListTest extends TestCase
      *
      * @return void
      */
-    public function test_store_todo_list()
+    public function test_fetch_all_todo_list()
     {
         // preparation / prepare
 
@@ -37,10 +37,8 @@ class TodoListTest extends TestCase
         $todo1FakeDB = TodoList::factory()->create();
         TodoList::factory()->create();
 
-
         #Get Response
-        $response = $this->getJson(route('todo-list.store'));
-
+        $response = $this->getJson(route('todo-list.all'));
 
         [$todo1Response] = $response?->json();
 
@@ -53,4 +51,19 @@ class TodoListTest extends TestCase
         $this->assertEquals($todo1FakeDB['name'],$todo1Response['name']);
 
     }
+
+
+    public function test_fetch_single_todo_list(){
+        //preparation 
+        $todo = TodoList::factory()->create();
+
+        //action && //assertion
+        $response = $this->getJson(route('todo-list.show',$todo->id))
+                            ->assertOk()
+                            ->json();
+
+        $this->assertEquals($todo->name, $response['name']);
+    }
+
+
 }
