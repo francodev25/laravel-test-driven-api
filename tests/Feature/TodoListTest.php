@@ -13,6 +13,18 @@ class TodoListTest extends TestCase
 
     use RefreshDatabase;
 
+
+    private $todoList;
+
+    public function setUp():void
+    {
+        # code...
+        parent::setUp();
+
+        $this->todoList = TodoList::factory()->create();
+    }
+
+
     /**
      * A basic feature test example.
      *
@@ -33,37 +45,46 @@ class TodoListTest extends TestCase
         * Use TodoList::factory()->create() instead
         */
         
-        # Create fake data at DB : 2 ToDos
-        $todo1FakeDB = TodoList::factory()->create();
-        TodoList::factory()->create();
 
         #Get Response
-        $response = $this->getJson(route('todo-list.all'));
+        $response = $this->getJson(route('todo-list.all'))
+                            ->assertOk()
+                            ->json();
 
-        [$todo1Response] = $response?->json();
+        [$todo1Response] = $response;
 
         // dd($todo1Response);
         
         //Expect two ToDos
-        $this->assertEquals(2,count($response?->json()));
+        $this->assertEquals(1,count($response));
 
         //The first One todo List res is Equal to first at DB
-        $this->assertEquals($todo1FakeDB['name'],$todo1Response['name']);
+        $this->assertEquals($this->todoList['name'],$todo1Response['name']);
 
     }
 
 
     public function test_fetch_single_todo_list(){
         //preparation 
-        $todo = TodoList::factory()->create();
+
 
         //action && //assertion
-        $response = $this->getJson(route('todo-list.show',$todo->id))
+        $response = $this->getJson(route('todo-list.show',$this->todoList))
                             ->assertOk()
                             ->json();
 
-        $this->assertEquals($todo->name, $response['name']);
+        $this->assertEquals($this->todoList['name'], $response['name']);
     }
 
+
+    public function test_store_new_todo_list(){
+        $todo = TodoList::factory()->create();
+        $response = $this->postJson(route('todo-list.store',['name' => $todo->name ]))->assertCreated()->json();
+
+        $this->assertEquals($todo->name,$response['name']);
+
+        $this->assertDatabaseHas('todo_lists', ['name' => $todo->name]);
+
+    }
 
 }

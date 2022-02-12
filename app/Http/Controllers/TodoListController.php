@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\TodoList;
+
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TodoListController extends Controller
 {
@@ -15,10 +17,14 @@ class TodoListController extends Controller
         return response()->json($lists);
     }
 
-    public function show($id)
+    public function show(TodoList $todoList)
     {
         # code...
-        $todo = TodoList::find($id);
-        return response()->json($todo);
+        return response()->json($todoList);
+    }
+
+    public function store(Request $request){
+        $list = TodoList::create($request->all());
+        return response($list,  Response::HTTP_CREATED);
     }
 }
