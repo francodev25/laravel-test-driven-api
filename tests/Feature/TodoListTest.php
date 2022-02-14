@@ -95,4 +95,12 @@ class TodoListTest extends TestCase
                          ->assertJsonValidationErrors(['name']);
     }
 
+
+    public function test_delete_todo_list()
+    {
+        # code...
+        $this->deleteJson(route('todo-list.destroy', $this->todoList))->assertNoContent();
+
+        $this->assertDatabaseMissing('todo_lists', ['name' => $this->todoList->name]);
+    }
 }
