@@ -103,4 +103,27 @@ class TodoListTest extends TestCase
 
         $this->assertDatabaseMissing('todo_lists', ['name' => $this->todoList->name]);
     }
+
+    public function test_update_todo_list(){
+        $this->patchJson(route('todo-list.update', $this->todoList->id),['name' => 'updated name'])
+            ->assertOk();
+
+        $this->assertDatabaseHas('todo_lists',[
+            'id' => $this->todoList->id,
+            'name' => 'updated name',
+        ]);
+
+    }
+
+    public function test_while_updating_todo_list_name_field_is_required()
+    {
+        # code...
+        $this->withExceptionHandling();
+
+        $this->patchJson(route('todo-list.update',$this->todoList))
+             ->assertUnprocessable(422)
+             ->assertJsonValidationErrors(['name']);
+
+    }
+
 }
