@@ -87,4 +87,12 @@ class TodoListTest extends TestCase
 
     }
 
+    public function test_while_storing_todo_list_name_field_is_required(){
+        $this->withExceptionHandling();
+        //assert Not found without parameters is a great tip. It returns the actual status.
+        $this->postJson(route('todo-list.store'))
+                         ->assertUnprocessable(422)
+                         ->assertJsonValidationErrors(['name']);
+    }
+
 }
