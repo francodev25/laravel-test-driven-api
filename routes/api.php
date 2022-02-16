@@ -15,16 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::get('todo-list', [TodoListController::class, 'index'])->name('todo-list.all');
-
-Route::get('todo-list/{todoList}', [TodoListController::class, 'show'])->name('todo-list.show');
-
-Route::post('todo-list', [TodoListController::class, 'store'])->name('todo-list.store');
-
-Route::delete('todo-list/{todoList}', [TodoListController::class, 'destroy'])->name('todo-list.destroy');
-
-Route::patch('todo-list/{todoList}', [TodoListController::class, 'update'])->name('todo-list.update');
+Route::apiResource('todo-list',TodoListController::class);

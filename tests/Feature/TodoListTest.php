@@ -21,7 +21,12 @@ class TodoListTest extends TestCase
         # code...
         parent::setUp();
 
-        $this->todoList = TodoList::factory()->create();
+        $this->todoList = $this->createTodoList();
+    }
+
+
+    public function createTodoList( $args = []){
+        return TodoList::factory()->create($args);
     }
 
 
@@ -47,7 +52,7 @@ class TodoListTest extends TestCase
         
 
         #Get Response
-        $response = $this->getJson(route('todo-list.all'))
+        $response = $this->getJson(route('todo-list.index'))
                             ->assertOk()
                             ->json();
 
