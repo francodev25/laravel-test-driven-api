@@ -25,4 +25,11 @@ class TaskTest extends TestCase
         $this->assertEquals($task->title,$response[0]['title']);
 
     }
+
+    public function test_store_a_task_for_a_todo_list(){
+        $task = Task::factory()->create();
+        $this->postJson(route('tasks.store'),['title' => $task->title])->assertCreated()->json();
+        
+        $this->assertDatabaseHas('tasks', ['title' => $task->title]);
+    }
 }
