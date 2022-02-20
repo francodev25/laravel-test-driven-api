@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('todo-list',TodoListController::class);
 
-Route::apiResource('tasks',TaskController::class);
+Route::apiResource('todo-list.task',TaskController::class)->except('show')->shallow();
