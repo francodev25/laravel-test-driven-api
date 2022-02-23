@@ -22,7 +22,6 @@ class TaskTest extends TestCase
         $todoList = $this->createTodoList();
         $task = $this->createTask(['todo_list_id' => $todoList->id]);
         
-        $this->createTask(['todo_list_id' => 4]);
         
         $response = $this->getJson(route('todo-list.task.index',$todoList->id))->assertOk()->json();
         $this->assertEquals(1,count($response));
