@@ -1,9 +1,20 @@
-## Test API
-Create the .env (see .env.example)
+# Test Driven Development with Laravel
 
-Create a Database on your client mysql (You can use .env.example to see the name DB).
+## Pre Requisites :clipboard:
+* **PHP** >= 8.0
 
-Then run the command below
+## Set up :
+
+1) Create the ```.env``` (see .env.example)
+
+2) Create a Database on your client mysql (You can use .env.example to see the name DB).
+
+3) ```composer install```
+
+
+## Testing
+
+For run the test passing, run the command below
 
 ```php artisan test```
 
