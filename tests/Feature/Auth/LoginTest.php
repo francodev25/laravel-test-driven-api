@@ -33,4 +33,13 @@ class LoginTest extends TestCase
             'password' => 'password'
         ])->assertUnauthorized();
     }
+
+    public function test_it_raise_error_if_password_is_incorrect(){
+        $user = User::factory()->create();
+
+        $this->postJson(route('user.login'),[
+            'email' => $user->email,
+            'password' => $user->password
+        ])->assertUnauthorized();
+    }
 }
