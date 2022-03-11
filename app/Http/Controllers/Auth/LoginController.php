@@ -3,13 +3,22 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
     //
-    public function __invoke()
+    public function __invoke(LoginRequest $request)
     {
-        return 'yes';
+        $user = User::whereEmail($request->email)->first();
+
+        if(! $user){
+            return response('Credentials does not match.', Response::HTTP_UNAUTHORIZED);
+        }
+
+        return response(['token' => 'hello']);
     }
 }
