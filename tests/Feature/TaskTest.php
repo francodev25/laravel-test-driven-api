@@ -12,6 +12,12 @@ class TaskTest extends TestCase
 
     use RefreshDatabase;
 
+    public function setUp():void
+    {
+        # code...
+        parent::setUp();
+        $this->authUser();
+    }
     /**
      * A basic feature test example.
      *

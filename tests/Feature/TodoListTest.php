@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\TodoList;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class TodoListTest extends TestCase
@@ -20,7 +22,7 @@ class TodoListTest extends TestCase
     {
         # code...
         parent::setUp();
-
+        $this->authUser();
         $this->todoList = $this->createTodoList();
     }
 
