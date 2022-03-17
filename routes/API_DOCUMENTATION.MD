@@ -78,3 +78,24 @@
     }
 ]
 ```
+---
+
+### Request : `GET api/todo-list/{todo_list}`
+### Parameters : 
+* `{todo_list}` It should be a number. Example: 1
+### Response
+### Status : `200` :ok_hand:
+
+
+:information_source: In this example response an Single JSON.
+
+
+
+```json
+    {
+    "id": 1,
+    "name": "Corrupti eaque odio sunt veritatis nihil.",
+    "created_at": "2022-03-17T21:55:05.000000Z",
+    "updated_at": "2022-03-17T21:55:05.000000Z"
+    }
+```
