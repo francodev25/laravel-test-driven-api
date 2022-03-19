@@ -3,16 +3,18 @@
 ## Pre Requisites :clipboard:
 * **PHP** >= 8.0
 
-## Set up :
+## Set up :wrench:
 
-1) Create the ```.env``` (see .env.example)
+1) Create the ```.env``` (see .env.example. You will need all this parameters). 
 
-2) Create a Database on your client mysql (You can use .env.example to see the name DB).
+2) Create a Database on your client mysql (You can use .env.example to see the name DB, but we recommend another name, or as you prefer, but USE all that parameteres).
 
-3) ```composer install```
+3) Install Dependencies ```composer install```
 
 
-## Testing
+4) Optional: Run the migration => You can run the DB seeder for use data as mock ```php artisan migrate:refresh --seed ```
+
+## Testing :white_check_mark:
 
 For run the test passing, run the command below
 
