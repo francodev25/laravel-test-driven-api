@@ -53,6 +53,8 @@ class TodoListTest extends TestCase
         */
         
 
+        $this->createTodoList();
+
         #Get Response
         $response = $this->getJson(route('todo-list.index'))
                             ->assertOk()
