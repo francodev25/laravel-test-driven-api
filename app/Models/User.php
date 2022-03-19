@@ -43,12 +43,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /** ============== Relationships ============== */
+    
     public function todo_lists():HasMany{
         return $this->hasMany(TodoList::class);
     }
-
-
-
+    
+    
+    /** ============== Scopes ==================== */
+    
     public function scopeName($query, $name){
         if($name){
             return $query->where('name','LIKE',"%$name%");

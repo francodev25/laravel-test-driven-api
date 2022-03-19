@@ -13,6 +13,8 @@ class TodoList extends Model
 
     protected $fillable = ['name','user_id'];
 
+    /** ============== Relationships ============== */
+
     public function tasks(): HasMany{
         return $this->hasMany(Task::class);
     }
