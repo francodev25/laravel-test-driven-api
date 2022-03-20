@@ -2,6 +2,12 @@
 
 ## Pre Requisites :clipboard:
 * **PHP** >= 8.0
+* **Composer** >= 2.2.6
+* **MySQL** >= 5.7.24
+
+Apache or Nginx
+* **Apache HTTP Server** >= 2.4
+* **Nginx** >= 1.20
 
 ## Set up :wrench:
 
