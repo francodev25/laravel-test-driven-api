@@ -16,11 +16,11 @@ class LoginController extends Controller
     {
         $user = User::whereEmail($request->email)->first();
 
-        if(! $user){
+        if(!isset($user)){
             return response('Credentials does not exist.', Response::HTTP_UNAUTHORIZED);
         }
 
-        if(!$user || ! Hash::check($request->password ,$user->password)){
+        if(!isset($user) || !Hash::check($request->password ,$user->password)){
             return response('Credentials does not match. ', Response::HTTP_UNAUTHORIZED);
         }
 
